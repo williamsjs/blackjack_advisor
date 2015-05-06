@@ -13,9 +13,18 @@ def get_user_cards
   first_card = gets.chomp
   puts "Please enter your second card: "
   second_card = gets.chomp
-  if valid_card?(first_card) && valid_card?(second_card)
-    total = first_card.to_i + second_card.to_i
-    user_cards.push(total)
+  total = 0
+  if valid_card?(first_card) && first_card.upcase != 'A'
+    total += first_card.to_i
+  elsif first_card.upcase == 'A'
+    #fucntion to add it to hash
+  else
+    puts "You must enter valid numbers or 'A'"
+  end
+  if valid_card?(second_card) && second_card.upcase != 'A'
+    total += second_card.to_i
+  elsif second_card.upcase == 'A'
+    #function to add it to hash
   else
     puts "You must enter valid numbers or 'A'"
   end
@@ -24,8 +33,10 @@ end
 def get_dealer_card
   puts "Please enter the dealer's card: "
   dealer_card = gets.chomp.to_i
-  if valid_card?(dealer_card)
-    dealer_card
+  if dealer_card.upcase == 'A'
+    dealer_card.to_i
+  elsif valid_card?(dealer_card)
+    dealer_card.to_i
   else
     puts "You must enter valid numbers or 'A'"
   end
