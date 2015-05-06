@@ -13,9 +13,9 @@ def get_user_cards
   first_card = gets.chomp
   if valid_card?(first_card) && first_card.upcase != 'A'
     total += first_card.to_i
-    user_cards.push(first_card)
+    user_cards.push(first_card.to_i)
   elsif first_card.upcase == 'A'
-    #fucntion to add it to hash
+    user_cards.push('A')
   else
     puts "You must enter valid numbers or 'A'"
   end
@@ -23,9 +23,9 @@ def get_user_cards
   second_card = gets.chomp
   if valid_card?(second_card) && second_card.upcase != 'A'
     total += second_card.to_i
-    user_cards.push(second_card)
+    user_cards.push(second_card.to_i)
   elsif second_card.upcase == 'A'
-    #function to add it to hash
+    user_cards.push('A')
   else
     puts "You must enter valid numbers or 'A'"
   end
@@ -36,7 +36,7 @@ def get_dealer_card
   puts "Please enter the dealer's card: "
   dealer_card = gets.chomp
   if dealer_card.upcase == 'A'
-    dealer_card.to_i
+    dealer_card.upcase
   elsif valid_card?(dealer_card)
     dealer_card.to_i
   else
@@ -46,7 +46,42 @@ end
 
 user_cards, total = get_user_cards
 dealer_card = get_dealer_card
+all_cards = [dealer_card, user_cards].flatten
+
+# def is_hard_hand?(all_cards)
 
 puts "total is #{total}"
 puts "your cards are #{user_cards}"
 puts "the dealer's card is #{dealer_card}"
+puts "All of the cards are #{all_cards}"
+
+# if all_cards.includes?('A')
+#   hash_answer
+# end
+
+
+def hit
+  puts "You should hit, stand, split, dh, ds"
+end
+
+def stand
+  puts "You should stand"
+end
+
+def split
+  puts "You should split"
+end
+
+def double_otherwise_hit
+  puts "You should double, otherwise you should hit"
+end
+
+def double_otherwise_stand
+  puts "You should double, otherwise you should stand"
+end
+
+hash_answers = {:hard => {},
+                :soft => {}
+                }
+
+puts hash_answers
