@@ -55,13 +55,13 @@ puts "your cards are #{user_cards}"
 puts "the dealer's card is #{dealer_card}"
 puts "All of the cards are #{all_cards}"
 
-# if all_cards.includes?('A')
-#   hash_answer
-# end
+if all_cards.include?('A')
+   hash_answer
+end
 
 
 def hit
-  puts "You should hit, stand, split, dh, ds"
+  puts "You should hit"
 end
 
 def stand
@@ -80,8 +80,18 @@ def double_otherwise_stand
   puts "You should double, otherwise you should stand"
 end
 
-hash_answers = {:hard => {},
-                :soft => {}
+hash_answers = {hard: {5 => {2 => hit},
+                       3 => {5 => split},
+                       8 => {2 => stand},
+                       17 => {8 => double_otherwise_hit},
+                       10 => {9 => double_otherwise_stand}
+                      },
+                soft: {}
                 }
 
-puts hash_answers
+
+hash_answers.each do |key, value|
+  if key == :hard
+    puts "Value is #{value}"
+  end
+end
