@@ -55,15 +55,6 @@ puts "your cards are #{user_cards}"
 puts "the dealer's card is #{dealer_card}"
 puts "All of the cards are #{all_cards}"
 
-#assumes that ace is not included in array of cards
-includes_ace = false
-
-#checks to see if ace is included and sets includes_ace to true
-if all_cards.include?('A')
-  includes_ace = true
-end
-
-
 # sets up hash to include a hash
 hash_answers = {hard: {5 => {2 => "hit",
                              3 => "hit",
@@ -330,30 +321,34 @@ hash_answers = {hard: {5 => {2 => "hit",
                 }
 
 
+#assumes that ace is not included in array of cards
+includes_ace = false
+
+#checks to see if ace is included and sets includes_ace to true
+if all_cards.include?('A')
+  includes_ace = true
+end
+
 if includes_ace == true
   hash_answers[:hard].each do |key, value|
-    puts "cards include an ace"
+    if key == total
+      value.each do |key, value|
+        if key == dealer_card
+          puts "#{value.upcase}!"
+        end
+      end
+    end
   end
 end
 
 if includes_ace == false
   hash_answers[:soft].each do |key, value|
-
+    if key == total
+      value.each do |key, value|
+        if key == dealer_card
+          puts "#{value.upcase}!"
+        end
+      end
+    end
   end
 end
-
-# hash_answers.each do |key, value|
-#     if key == :soft
-#       value.each do |key, value|
-#         if key == 10
-#           puts value
-#         end
-#       end
-#     elsif key == :hard
-#       value.each do |key, value|
-#         if key == 17
-#           puts value
-#         end
-#       end
-#     end
-# end
